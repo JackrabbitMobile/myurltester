@@ -6,8 +6,18 @@
 </head>
 <body>
 
-Set window.location to: <input id="myLocation" name="myLocation" value="intent://view?id=123#Intent;package=com.example.urltester;scheme=myurltester;launchFlags=268435456;end;"></br>
-<button type="button" onclick="goClick()">Go!</button>
+Set window.location to: 
+</br>
+<input id="myLocation1" name="myLocation1" value="intent://view?id=123#Intent;package=com.example.urltester;scheme=myurltester;launchFlags=268435456;end;">
+</br>
+<button type="button" onclick="goClick1()">Go!</button>
+
+</br></br>
+Set window.location to: 
+</br>
+<input id="myLocation2" name="myLocation2" value="myurltester://login/123code456">
+</br>
+<button type="button" onclick="goClick2()">Go!</button>
 
 <script>
 console.log("testing!");
@@ -21,15 +31,19 @@ var IS_IPAD = navigator.userAgent.match(/iPad/i) != null,
 alert("IS_ANDROID: " + IS_ANDROID + ", IS_IOS: " + IS_IOS);
 console.log("IS_ANDROID: " + IS_ANDROID + ", IS_IOS: " + IS_IOS);
 
-function goClick()
+function goClick1()
 {
-	var myLocation = document.getElementById("myLocation").value;
-	
-	console.log("goClicked, myLocation: " + myLocation);
-	
+	var myLocation = document.getElementById("myLocation1").value;
+	console.log("goClick1, myLocation1: " + myLocation);
 	window.location = myLocation;
 }
 
+function goClick2()
+{
+	var myLocation = document.getElementById("myLocation2").value;
+	console.log("goClick2, myLocation2: " + myLocation);
+	window.location = myLocation;
+}
 </script>
 
 
