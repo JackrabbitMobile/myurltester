@@ -12,11 +12,9 @@ var IS_IPAD = navigator.userAgent.match(/iPad/i) != null,
 alert("IS_ANDROID: " + IS_ANDROID + ", IS_IOS: " + IS_IOS);
 console.log("IS_ANDROID: " + IS_ANDROID + ", IS_IOS: " + IS_IOS);
 
-// window.location = 'intent://view?id=123#Intent;package=com.example.urltester;scheme=myurltester;launchFlags=268435456;end;';
-
 console.log("after window.location");
 
-var open = function{
+var open = function(){
 	console.log("open()");
 	alert("open()");
 
