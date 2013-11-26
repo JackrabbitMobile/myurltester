@@ -1,7 +1,6 @@
 <html>
 <body>
 <script>
-alert("TESTING!");
 console.log("testing!");
 
 var IS_IPAD = navigator.userAgent.match(/iPad/i) != null,
@@ -15,11 +14,11 @@ console.log("IS_ANDROID: " + IS_ANDROID + ", IS_IOS: " + IS_IOS);
 
 // window.location = 'intent://view?id=123#Intent;package=com.example.urltester;scheme=myurltester;launchFlags=268435456;end;';
 
-alert("after window.location");
 console.log("after window.location");
 
 function open(){
 	console.log("open()");
+	alert("open()");
 
 	var myLocation = document.getElementById("myLocation").innerHTML;
 	
