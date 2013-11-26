@@ -18,10 +18,9 @@ console.log("IS_ANDROID: " + IS_ANDROID + ", IS_IOS: " + IS_IOS);
 
 function goClick()
 {
-	console.log("goClicked");
-	alert("goClicked");
-
 	var myLocation = document.getElementById("myLocation").value;
+	
+	console.log("goClicked, myLocation: " + myLocation);
 	
 	window.location = myLocation;
 }
