@@ -14,9 +14,9 @@ console.log("IS_ANDROID: " + IS_ANDROID + ", IS_IOS: " + IS_IOS);
 
 console.log("after window.location");
 
-var open = function(){
-	console.log("open()");
-	alert("open()");
+var goClick = function(){
+	console.log("goClicked");
+	alert("goClicked");
 
 	var myLocation = document.getElementById("myLocation").innerHTML;
 	
@@ -26,7 +26,7 @@ var open = function(){
 </script>
 
 Set window.location to: <input id="myLocation" name="myLocation" value="intent://view?id=123#Intent;package=com.example.urltester;scheme=myurltester;launchFlags=268435456;end;"></br>
-<button type="button" onclick="open()">Go!</button>
+<button type="button" onclick="goClick()">Go!</button>
 
 
 </body>
