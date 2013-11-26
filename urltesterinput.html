@@ -1,0 +1,36 @@
+<html>
+<body>
+<script>
+alert("TESTING!");
+console.log("testing!");
+
+var IS_IPAD = navigator.userAgent.match(/iPad/i) != null,
+    IS_IPHONE = !IS_IPAD && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null)),
+    IS_IOS = IS_IPAD || IS_IPHONE,
+    IS_ANDROID = !IS_IOS && navigator.userAgent.match(/android/i) != null,
+    IS_MOBILE = IS_IOS || IS_ANDROID;
+
+alert("IS_ANDROID: " + IS_ANDROID + ", IS_IOS: " + IS_IOS);
+console.log("IS_ANDROID: " + IS_ANDROID + ", IS_IOS: " + IS_IOS);
+
+// window.location = 'intent://view?id=123#Intent;package=com.example.urltester;scheme=myurltester;launchFlags=268435456;end;';
+
+alert("after window.location");
+console.log("after window.location");
+
+function open(){
+	console.log("open()");
+
+	var myLocation = document.getElementById("myLocation").innerHTML;
+	
+	window.location = myLocation;
+}
+
+</script>
+
+Set window.location to: <input id="myLocation" name="myLocation" value="intent://view?id=123#Intent;package=com.example.urltester;scheme=myurltester;launchFlags=268435456;end;"></br>
+<button type="button" onclick="open()">Go!</button>
+
+
+</body>
+</html>
