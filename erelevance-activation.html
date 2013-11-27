@@ -1,0 +1,61 @@
+<html>
+<body>
+<script>
+alert("ALERT TESTING!");
+console.log("console testing!");
+
+// Function to invoke app redirection
+function open() {
+    
+    // If it's not an universal app, use IS_IPAD or IS_IPHONE
+    if (IS_IOS) {
+        window.location = "myapp://view?id=123";
+    
+        setTimeout(function() {
+    
+            // If the user is still here, open the App Store
+            if (!document.webkitHidden) {
+    
+                // Replace the Apple ID following '/id'
+                window.location = 'http://itunes.apple.com/app/id1234567';
+            }
+        }, 25);
+    
+    } else if (IS_ANDROID) {
+    
+        // Instead of using the actual URL scheme, use 'intent://' for better UX
+        window.location = 'intent://view?id=123#Intent;package=my.app.id;scheme=myapp;launchFlags=268435456;end;';
+    }
+}
+
+// Function to get parameters from url arguments
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+
+
+var urlScheme = "erelevance://login/";
+
+// Determine the accessing device
+var IS_IPAD = navigator.userAgent.match(/iPad/i) != null,
+    IS_IPHONE = !IS_IPAD && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null)),
+    IS_IOS = IS_IPAD || IS_IPHONE,
+    IS_ANDROID = !IS_IOS && navigator.userAgent.match(/android/i) != null,
+    IS_MOBILE = IS_IOS || IS_ANDROID;
+
+alert("IS_ANDROID: " + IS_ANDROID + ", IS_IOS: " + IS_IOS);
+console.log("IS_ANDROID: " + IS_ANDROID + ", IS_IOS: " + IS_IOS);
+
+// window.location = 'intent://view?id=123#Intent;package=com.example.urltester;scheme=myurltester;launchFlags=268435456;end;';
+
+var code = getParameterByName("code");
+console.log("code" + code);
+alert("code: "  + code);
+
+</script>
+</body>
+</html>
