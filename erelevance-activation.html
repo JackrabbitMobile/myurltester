@@ -4,30 +4,6 @@
 alert("ALERT TESTING!");
 console.log("console testing!");
 
-// Function to invoke app redirection
-function open() {
-    
-    // If it's not an universal app, use IS_IPAD or IS_IPHONE
-    if (IS_IOS) {
-        window.location = "myapp://view?id=123";
-    
-        setTimeout(function() {
-    
-            // If the user is still here, open the App Store
-            if (!document.webkitHidden) {
-    
-                // Replace the Apple ID following '/id'
-                window.location = 'http://itunes.apple.com/app/id1234567';
-            }
-        }, 25);
-    
-    } else if (IS_ANDROID) {
-    
-        // Instead of using the actual URL scheme, use 'intent://' for better UX
-        window.location = 'intent://view?id=123#Intent;package=my.app.id;scheme=myapp;launchFlags=268435456;end;';
-    }
-}
-
 // Function to get parameters from url arguments
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -36,25 +12,71 @@ function getParameterByName(name) {
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+// Build iTunes URL
+var itunes_id = 0;
+var itunes_url = 'http://itunes.apple.com/app/' + itunes_id;
 
+// Build Google Play URL
+var android_package_name = "com.jr.pma";
+var android_url = "https://play.google.com/store/apps/details?id=" + android_package_name;
 
-var urlScheme = "erelevance://login/";
+// Build eRelevance URL
+var scheme = "erelevance";
+var code = getParameterByName("code");
+var erLoginScheme = scheme + "://login/" + code;
+
+var eRelevanceWebsiteUrl = "http://erelevancecorp.com/";
+
 
 // Determine the accessing device
 var IS_IPAD = navigator.userAgent.match(/iPad/i) != null,
-    IS_IPHONE = !IS_IPAD && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null)),
-    IS_IOS = IS_IPAD || IS_IPHONE,
-    IS_ANDROID = !IS_IOS && navigator.userAgent.match(/android/i) != null,
-    IS_MOBILE = IS_IOS || IS_ANDROID;
+	IS_IPHONE = !IS_IPAD && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null)),
+	IS_IOS = IS_IPAD || IS_IPHONE,
+	IS_ANDROID = !IS_IOS && navigator.userAgent.match(/android/i) != null,
+	IS_MOBILE = IS_IOS || IS_ANDROID;
 
-alert("IS_ANDROID: " + IS_ANDROID + ", IS_IOS: " + IS_IOS);
+// Log information for debugging
+console.log("itunes_id: " + itunes_id + ", itunes_url: " + itunes_url + 
+			"android_package_name: " + android_package_name + ", android_url: " + android_url +
+			"scheme: " + scheme + ", code: " + code + ", erLoginScheme: " + erLoginScheme);
 console.log("IS_ANDROID: " + IS_ANDROID + ", IS_IOS: " + IS_IOS);
 
-// window.location = 'intent://view?id=123#Intent;package=com.example.urltester;scheme=myurltester;launchFlags=268435456;end;';
 
-var code = getParameterByName("code");
-console.log("code" + code);
-alert("code: "  + code);
+
+// If it's not an universal app, use IS_IPAD or IS_IPHONE
+if (IS_IOS) {
+//	window.location = "myapp://view?id=123";
+	window.location = erLoginScheme;
+
+	setTimeout(function() {
+		// If the user is still here, open eRelevance in the App Store
+		if (!document.webkitHidden) {
+			window.location = itunes_url;
+		}
+	}, 25);
+
+} else if (IS_ANDROID) {
+
+	// Instead of using the actual URL scheme, use 'intent://' for better UX
+//	window.location = 'intent://view?id=123#Intent;package=my.app.id;scheme=erelevance;launchFlags=268435456;end;';
+	window.location = erLoginScheme;
+	
+	setTimeout(function() {
+
+		// If the user is still here, open eRelevance in Google Play
+		if (!document.webkitHidden) {
+			// Replace the Apple ID following '/id'
+			window.location = android_url;
+			
+		}
+	}, 25);
+}
+// If none of the above, navigate to eRelevance website
+else{
+	window.location = eRelevanceWebsiteUrl
+}
+
+console.log("done");
 
 </script>
 </body>
