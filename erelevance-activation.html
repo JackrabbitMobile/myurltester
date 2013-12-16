@@ -60,15 +60,15 @@ if (IS_IOS) {
 //	window.location = 'intent://view?id=123#Intent;package=my.app.id;scheme=erelevance;launchFlags=268435456;end;';
 	window.location = erLoginScheme;
 	
-	setTimeout(function() {
-
-		// If the user is still here, open eRelevance in Google Play
-		if (!document.webkitHidden) {
-			// Replace the Apple ID following '/id'
-			window.location = android_url;
-			
-		}
-	}, 25);
+// Do not need set timeout for Android
+// 	setTimeout(function() {
+// 
+// 		// If the user is still here, open eRelevance in Google Play
+// 		if (!document.webkitHidden) {
+// 			// Replace the Apple ID following '/id'
+// 			window.location = android_url;
+// 		}
+// 	}, 25);
 }
 // If none of the above, navigate to eRelevance website
 else{
