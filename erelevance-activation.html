@@ -22,7 +22,9 @@ var android_url = "https://play.google.com/store/apps/details?id=" + android_pac
 // Build eRelevance URL
 var scheme = "erelevance";
 var code = getParameterByName("code");
-var erLoginScheme = scheme + "://login/" + code;
+var patient_name = getParameterByName("name");
+var provider_name = getParameterByName("provider");
+var erLoginScheme = scheme + "://login/" + code + "?name=" + name + "&provider=" + provider;
 
 var eRelevanceWebsiteUrl = "http://erelevancecorp.com/";
 
